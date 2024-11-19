@@ -1,0 +1,108 @@
+{% extends 'energy/base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="flex flex-col gap-20">
+    <div class="grid grid-cols-4 gap-8">
+        <div class="border shadow rounded-xl p-6 flex flex-row gap-4 items-center bg-white">
+            <div class="bg-green-200 rounded-full p-3">
+                <i class="fa-solid fa-share-from-square text-xl text-green-600"></i>
+            </div>
+            <section class="flex flex-col gap-1">
+                <p class="text-xl font-semibold">{{ current_consumption.consumption|default:"0" }} kWh</p>
+                <p class="text-gray-400">Consumption (Current)</p>
+            </section>
+        </div>
+        <div class="border shadow rounded-xl p-6 flex flex-row gap-4 items-center bg-white">
+            <div class="bg-green-200 rounded-full p-3">
+                <i class="fa-solid fa-share-from-square text-xl text-green-600"></i>
+            </div>
+            <section class="flex flex-col gap-1">
+                <p class="text-xl font-semibold">{{ current_saving.savings|default:"0" }} USD</p>
+                <p class="text-gray-400">Saving (Current)</p>
+            </section>
+        </div>
+        <div class="border shadow rounded-xl p-6 flex flex-row gap-4 items-center bg-white">
+            <div class="bg-green-200 rounded-full p-3">
+                <i class="fa-solid fa-share-from-square text-xl text-green-600"></i>
+            </div>
+            <section class="flex flex-col gap-1">
+                <p class="text-xl font-semibold">{{ total_consumption }} kWh</p>
+                <p class="text-gray-400">Consumption (Total)</p>
+            </section>
+        </div>
+        <div class="border shadow rounded-xl p-6 flex flex-row gap-4 items-center bg-white">
+            <div class="bg-green-200 rounded-full p-3">
+                <i class="fa-solid fa-share-from-square text-xl text-green-600"></i>
+            </div>
+            <section class="flex flex-col gap-1">
+                <p class="text-xl font-semibold">{{ total_saving }} USD</p>
+                <p class="text-gray-400">Saving (Total)</p>
+            </section>
+        </div>
+    </div>
+
+    <div>
+        <h3 class="pb-8">Analysis</h3>
+        <canvas id="myChart" width="300" height="110vh"></canvas>
+    </div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.2.1/dist/chart.min.js"></script>
+<script>
+    const ctx = document.getElementById('myChart').getContext('2d');
+    
+    const chartData = {
+        labels: {{ dates|safe }}, 
+        datasets: [
+            {
+                label: 'Consumption (kWh)',
+                data: {{ consumption_data|safe }},  
+                borderColor: 'rgba(0, 100, 0, 1)',
+                backgroundColor: 'rgba(0, 128, 0, 0.4)',
+                borderWidth: 2,
+                fill: true,
+            },
+            {
+                label: 'Savings (USD)',
+                data: {{ savings_data|safe }}, 
+                borderColor: 'rgba(0, 0, 0, 0.1)',
+                backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                borderWidth: 2,
+                fill: true,
+            }
+        ]
+    };
+
+    const chartOptions = {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Value'
+                }
+            },
+            x: {
+                title: {
+                    display: true,
+                    text: 'Date'
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                display: true,
+                position: 'top',
+            },
+        }
+    };
+
+    const myChart = new Chart(ctx, {
+        type: 'line',
+        data: chartData,
+        options: chartOptions
+    });
+</script>
+{% endblock %}

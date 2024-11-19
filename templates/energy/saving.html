@@ -1,0 +1,47 @@
+{% extends 'energy/base.html' %}
+{% block title %}Savings Report{% endblock %}
+{% block content %}
+<div class="savings-report-table">
+  <h2 class="text-2xl font-bold mb-4">Savings Report Records</h2>
+
+  <table class="table-auto w-full text-left bg-white shadow-md rounded-md">
+    <thead>
+      <tr class="bg-gray-200">
+        <th class="px-4 py-2">Date</th>
+        <th class="px-4 py-2">Energy Saved (kWh)</th>
+        <th class="px-4 py-2">Savings ($)</th>
+        <th class="px-4 py-2">Savings Method</th>
+        <th class="px-4 py-2">Percentage Saved (%)</th>
+        <th class="px-4 py-2">Units Saved (kWh)</th>
+        <th class="px-4 py-2">Remarks</th>
+        <th class="px-4 py-2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for saving in savings %}
+      <tr class="border-t border-gray-300">
+        <td class="px-4 py-2">{{ saving.date }}</td>
+        <td class="px-4 py-2">{{ saving.energy_saved }} kWh</td>
+        <td class="px-4 py-2">${{ saving.savings }}</td>
+        <td class="px-4 py-2">{{ saving.method }}</td>
+        <td class="px-4 py-2">{{ saving.percentage_saved }}%</td>
+        <td class="px-4 py-2">{{ saving.units_saved }} kWh</td>
+        <td class="px-4 py-2">{{ saving.remarks }}</td>
+        <td class="px-4 py-2">
+          <a href="{% url 'update_saving' saving.id %}" class="text-green-600">
+            <i class="fa-solid fa-pencil text-xl"></i>
+          </a>
+          <a href="{% url 'delete_saving' saving.id %}" class="text-red-600 ml-4" onclick="return confirm('Are you sure you want to delete this entry?');">
+            <i class="fa-solid fa-trash-can text-xl"></i>
+          </a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="8" class="text-center py-4">No savings report data available.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

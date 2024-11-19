@@ -1,0 +1,158 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Energy management system</title>
+    <link rel="stylesheet" href="{% static 'main.css' %}" />
+    <link rel="icon" href="{% static 'images/logo.png' %}" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="w-screen h-full flex flex-col justify-center items-center">
+      {% comment %} navbar {% endcomment %}
+      <div class="w-screen py-3 border-b sticky top-0 z-20 bg-white shadow-sm">
+        <div class="flex items-center justify-between container mx-auto">
+          <img
+            src="{% static 'images/logo.png' %}"
+            alt="Logo"
+            class="w-16 h-16"
+          />
+          <ul class="flex items-center justify-center gap-10 pt-3">
+            <a
+              href="#hero"
+              class="text-black hover:text-green-600 transition-colors duration-75 cursor-pointer no-underline"
+            >
+              Home
+            </a>
+            <a
+              href="#about"
+              class="text-black hover:text-green-600 transition-colors duration-75 cursor-pointer no-underline"
+            >
+              About
+            </a>
+            <a
+              href="#features"
+              class="text-black hover:text-green-600 transition-colors duration-75 cursor-pointer no-underline"
+            >
+              Features
+            </a>
+          </ul>
+          <a href="{% url 'register' %}" class="px-6 py-2 rounded-md bg-green-600 text-white no-underline">
+            Register
+          </a>
+        </div>
+      </div>
+
+      {% comment %} hero content {% endcomment %}
+      <div id="hero" class="flex items-center w-screen container mx-auto mt-[10rem]">
+        <div class="flex-1">
+          <h1 class="text-green-600 font-bold text-7xl mb-6">ENERGY SAVER</h1>
+          <p class="mb-6 text-gray-600">
+            Discover smart ways to reduce energy use and lower your bills,
+            <br />
+            all while making your home more efficient and eco-friendly.
+          </p>
+          <a href="#about" class="px-6 py-2 rounded-md bg-green-600 text-white no-underline">
+            Read more
+          </a>
+        </div>
+        <img
+          src="{% static 'images/hero-img.jpg' %}"
+          alt="hero-image"
+          class="rounded-3xl flex-1"
+        />
+      </div>
+
+      {% comment %} about content {% endcomment %}
+      <div id="about" class="mt-[15rem]">
+        <div class="flex items-center w-screen container mx-auto">
+          <img
+            src="{% static 'images/about-img.jpg' %}"
+            alt="hero-image"
+            class="rounded-3xl flex-1"
+          />
+
+          <div class="flex-1 flex flex-col justify-end items-end">
+            <h1 class="text-green-600 font-bold text-5xl mb-6 text-end">
+              ABOUT US
+            </h1>
+            <p class="mb-6 text-gray-600 text-end max-w-[90%]">
+              At Energy Saver, we’re dedicated to helping households adopt
+              smarter, greener energy solutions. Our mission is to make energy
+              conservation simple and accessible, enabling you to reduce waste,
+              lower costs, and contribute to a sustainable future. With
+              innovative tools and expert advice, we empower you to take control
+              of your energy consumption with ease.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {% comment %} features content {% endcomment %}
+      <div id="features" class="mt-[15rem]">
+        <p class="text-green-600 text-5xl mb-7 font-bold">FEATURES</p>
+        <div class="grid grid-cols-3 gap-10 container mx-auto">
+          <div
+            class="p-6 bg-white rounded-3xl shadow-md border transition-transform duration-300 ease-in-out transform hover:scale-105"
+          >
+            <i
+              class="fa-solid fa-earth-americas text-green-600 text-2xl rounded-full mb-6"
+            ></i>
+            <h2 class="text-2xl font-bold text-green-600 mb-4">Consumption</h2>
+            <p class="text-gray-600">
+              Track and analyze your daily, weekly, and monthly energy
+              consumption. Identify patterns and make informed decisions to reduce
+              usage.
+            </p>
+          </div>
+          <div
+            class="p-6 bg-white rounded-3xl shadow-md border transition-transform duration-300 ease-in-out transform hover:scale-105"
+          >
+            <i
+              class="fa-solid fa-piggy-bank text-green-600 text-2xl rounded-full mb-6"
+            ></i>
+            <h2 class="text-2xl font-bold text-green-600 mb-4">Savings</h2>
+            <p class="text-gray-600">
+              See how much energy and money you’ve saved over time. Compare your
+              progress and set new goals to maximize efficiency.
+            </p>
+          </div>
+          <div
+            class="p-6 bg-white rounded-3xl shadow-md border transition-transform duration-300 ease-in-out transform hover:scale-105"
+          >
+            <i
+              class="fa-solid fa-chart-line text-green-600 text-2xl rounded-full mb-6"
+            ></i>
+            <h2 class="text-2xl font-bold text-green-600 mb-4">
+              Dashboard Overview
+            </h2>
+            <p class="text-gray-600">
+              Get a quick snapshot of your energy consumption and savings. Monitor
+              trends and take control of your usage to optimize efficiency.
+            </p>
+          </div>
+        </div>
+      </div>
+
+       {% comment %} footer content {% endcomment %}
+       <div class="mt-[6rem] w-screen bg-green-600">
+        <div class="py-7 container text-white text-center">
+          &copy; 2024 Energy Saver. All rights reserved.
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

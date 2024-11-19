@@ -1,0 +1,13 @@
+{% extends 'energy/base.html' %}
+{% block title %}Update Savings Report{% endblock %}
+{% block content %}
+<div class="update-savings-report">
+  <h2 class="text-2xl font-bold mb-4">Update Savings Report</h2>
+
+  <form method="POST" class="space-y-2">
+    {% csrf_token %}
+    {{ form.as_p }} 
+    <button type="submit" class="btn btn-primary">Update</button>
+  </form>
+</div>
+{% endblock %}

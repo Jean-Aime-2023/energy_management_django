@@ -1,0 +1,66 @@
+{% extends 'energy/base.html' %} {% block title %}Add Energy Data{% endblock %}
+{% block content %}
+<div class="add-energy-data">
+  <h2 class="text-2xl font-bold mb-4">Add Energy Consumption</h2>
+
+<form method="POST" class="space-y-2">
+  {% csrf_token %}
+  <div class="form-group-row">
+      <!-- Date -->
+      <div class="form-group w-full">
+          <label for="date">Date</label>
+          <input type="date" name="date" id="date" class="input-text" required />
+      </div>
+
+      <!-- Time -->
+      <div class="form-group w-full">
+          <label for="time">Time</label>
+          <input type="time" name="time" id="time" class="input-text" required />
+      </div>
+  </div>
+
+  <div class="form-group-row">
+      <!-- Consumption in kWh -->
+      <div class="form-group w-full">
+          <label for="consumption">Consumption (kWh)</label>
+          <input type="number" name="consumption" id="consumption" class="input-text" required />
+      </div>
+
+      <!-- Cost -->
+      <div class="form-group w-full">
+          <label for="cost">Cost ($)</label>
+          <input type="number" name="cost" id="cost" class="input-text" required />
+      </div>
+  </div>
+
+  <div class="form-group-row">
+      <!-- Energy Source -->
+      <div class="form-group w-full">
+          <label for="source">Energy Source</label>
+          <select name="source" id="source" class="input-text">
+              <option value="solar">Solar</option>
+              <option value="wind">Wind</option>
+              <option value="grid">Grid</option>
+              <option value="generator">Generator</option>
+          </select>
+      </div>
+
+      <!-- Location -->
+      <div class="form-group w-full">
+          <label for="location">Location</label>
+          <input type="text" name="location" id="location" class="input-text" placeholder="Enter location" required />
+      </div>
+  </div>
+
+  <!-- Remarks -->
+  <div class="form-group">
+      <label for="remarks">Remarks</label>
+      <textarea name="remarks" id="remarks" class="input-text" placeholder="Additional notes"></textarea>
+  </div>
+
+  <button type="submit" class="px-6 py-2 rounded-md bg-green-600 text-white no-underline">Add</button>
+</form>
+
+
+</div>
+{% endblock %} 

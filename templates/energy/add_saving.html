@@ -1,0 +1,60 @@
+{% extends 'energy/base.html' %} 
+{% block title %}Add Savings Report{% endblock%} 
+{% block content %}
+<div class="add-savings-report">
+  <h2 class="text-2xl font-bold mb-4">Add Savings Report</h2>
+
+<form method="POST" class="space-y-2">
+  {% csrf_token %}
+  <div class="form-group-row">
+      <div class="form-group">
+          <label for="date">Date</label>
+          <input type="date" name="date" id="date" class="input-text" required />
+      </div>
+
+      <div class="form-group">
+          <label for="energy_saved">Energy Saved (kWh)</label>
+          <input type="number" name="energy_saved" id="energy_saved" class="input-text" required />
+      </div>
+  </div>
+
+  <div class="form-group-row">
+      <div class="form-group">
+          <label for="savings">Savings ($)</label>
+          <input type="number" name="savings" id="savings" class="input-text" required />
+      </div>
+
+      <div class="form-group">
+          <label for="method">Savings Method</label>
+          <select name="method" id="method" class="input-text">
+              <option value="energy_efficiency">Energy Efficiency</option>
+              <option value="load_shifting">Load Shifting</option>
+              <option value="demand_response">Demand Response</option>
+              <option value="renewable_sources">Renewable Sources</option>
+          </select>
+      </div>
+  </div>
+
+  <div class="form-group-row">
+      <div class="form-group">
+          <label for="percentage_saved">Percentage Saved (%)</label>
+          <input type="number" name="percentage_saved" id="percentage_saved" class="input-text" required />
+      </div>
+
+      <div class="form-group">
+          <label for="units_saved">Energy Units Saved (kWh)</label>
+          <input type="number" name="units_saved" id="units_saved" class="input-text" required />
+      </div>
+  </div>
+
+  <div class="form-group">
+      <label for="remarks">Remarks</label>
+      <textarea name="remarks" id="remarks" class="input-text" placeholder="Additional notes"></textarea>
+  </div>
+
+  <button type="submit" class="px-6 py-2 rounded-md bg-green-600 text-white no-underline">Add</button>
+</form>
+
+
+</div>
+{% endblock %}
